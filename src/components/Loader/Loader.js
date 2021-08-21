@@ -6,11 +6,11 @@ export default class App extends Component {
   render() {
     return (
       <Loader
-        type="Puff"
+        type="Bars"
         color="#FF8C00"
-        height={100}
-        width={100}
-        timeout={3000}
+        height={300}
+        width={300}
+        timeout={1500}
       />
     );
   }

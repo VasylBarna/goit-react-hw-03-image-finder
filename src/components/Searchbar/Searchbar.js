@@ -9,7 +9,7 @@ export default class Searchbar extends Component {
 
   static propTypes = {
     imageName: PropTypes.string,
-    // onSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {

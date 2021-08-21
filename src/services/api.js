@@ -8,14 +8,13 @@ export default class ApiService {
     this.perPage = 12;
   }
 
-  async fatchImages() {
+  async fetchImages() {
     const response = await fetch(
       `${BASE_URL}/api/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.pageNumber}&per_page=${this.perPage}&key=${API_KEY}`,
     );
     const parsedResponse = await response.json();
-    const card = await parsedResponse.hits;
     this.incrementPage();
-    return card;
+    return parsedResponse;
   }
   incrementPage() {
     this.pageNumber += 1;

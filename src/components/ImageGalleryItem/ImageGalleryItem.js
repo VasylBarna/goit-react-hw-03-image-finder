@@ -26,7 +26,7 @@ const ImageGalleryItem = ({
 };
 
 ImageGalleryItem.propeType = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
   largeImage: PropTypes.string.isRequired,
@@ -35,20 +35,3 @@ ImageGalleryItem.propeType = {
 };
 
 export default ImageGalleryItem;
-
-// export default function ImageGalleryItem({ webformatURL, onClick, tags }) {
-//   return (
-//     <img
-//       src={webformatURL}
-//       alt={tags}
-//       className={styles.image}
-//       onClick={onClick}
-//     />
-//   );
-// }
-
-// ImageGalleryItem.propTypes = {
-//   webformatURL: PropTypes.string.isRequired,
-//   tags: PropTypes.string,
-//   onClick: PropTypes.func.isRequired,
-// };

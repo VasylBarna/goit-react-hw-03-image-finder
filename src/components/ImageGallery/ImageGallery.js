@@ -5,7 +5,7 @@ import ImageGalleryItem from '../ImageGalleryItem';
 import Modal from '../Modal';
 import Button from '../Button';
 import styles from './ImageGallery.module.scss';
-import Loader from 'react-loader-spinner';
+import Loader from '../Loader';
 
 const apiService = new ApiService();
 
@@ -15,7 +15,7 @@ export default class ImageGallery extends Component {
     showModal: PropTypes.bool,
     largeImage: PropTypes.string,
     error: PropTypes.string,
-    isLoading: PropTypes.bool,
+    loading: PropTypes.bool,
   };
 
   state = {
@@ -74,13 +74,13 @@ export default class ImageGallery extends Component {
   };
 
   render() {
-    const { showModal, loading, images, tags, largeImage } = this.state;
+    const { showModal, loading, images, largeImage } = this.state;
 
     return (
       <>
         {showModal && (
-          <Modal onCloseModal={this.toggleModal}>
-            <img src={largeImage} alt={tags} />
+          <Modal onClose={this.toggleModal}>
+            <img src={largeImage} alt="images" />
           </Modal>
         )}
 
@@ -88,7 +88,7 @@ export default class ImageGallery extends Component {
           {images.map(({ id, webformatURL, tags, largeImageURL }) => {
             return (
               <ImageGalleryItem
-                id={id}
+                key={id}
                 url={webformatURL}
                 tags={tags}
                 largeImage={largeImageURL}
@@ -98,38 +98,19 @@ export default class ImageGallery extends Component {
             );
           })}
         </ul>
-
         {images.length > 0 && !loading && (
           <Button onClick={this.handleBtnClick} />
         )}
-
-        {loading && <Loader />}
+        {loading && (
+          <Loader
+            type="Bars"
+            color="#FF8C00"
+            height={300}
+            width={300}
+            timeout={1500}
+          />
+        )}
       </>
     );
   }
 }
-
-// const ImageGallery = ({ hits, onOpenModal }) => {
-//   return (
-//     <ul className={styles.imageGallery}>
-//       {hits.map(({ id, webformatURL, largeImageURL }) => {
-//         const handleImgClick = () => onOpenModal(largeImageURL);
-//         return (
-//           <li key={id} className={styles.imageGalleryItem}>
-//             <ImageGalleryItem
-//               webformatURL={webformatURL}
-//               onClick={handleImgClick}
-//             />
-//           </li>
-//         );
-//       })}
-//     </ul>
-//   );
-// };
-
-// ImageGallery.propTypes = {
-//   hits: PropTypes.array.isRequired,
-//   onOpenModal: PropTypes.func.isRequired,
-// };
-
-// export default ImageGallery;

@@ -10,7 +10,7 @@ export default class App extends Component {
         color="#FF8C00"
         height={300}
         width={300}
-        timeout={1500}
+        timeout={2000}
       />
     );
   }
